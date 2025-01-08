@@ -8,17 +8,16 @@ import utils.PropertyReader;
 public class ProjectInit {
 
 	public WebDriver driver;
-	public String browser;
+	
 
 
 	public void setup() {
 		String env=System.getProperty("env","dev");
+		//String env ="dev";
+		System.out.println("Environment: " + env);
 		PropertyReader propReader=new PropertyReader(env);
-		DriverFactory.setDriver(browser);
-		driver=DriverFactory.getDriver();
-		
-		 System.out.println("Environment: " + env);
-	     System.out.println("Browser: " + browser);
+		System.out.println("Browser: " + propReader.getProperty("browser"));
+		driver = DriverFactory.getDriver(propReader.getProperty("browser"));
 
 		if (driver == null) {
 			throw new RuntimeException("WebDriver initialization failed!");

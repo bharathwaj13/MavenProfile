@@ -22,7 +22,7 @@ public class DriverFactory {
 	 * }
 	 */
 
-	public static void setDriver(String browser) {
+	public static WebDriver getDriver(String browser) {
 		if(browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options=new ChromeOptions();
@@ -33,11 +33,8 @@ public class DriverFactory {
 			WebDriverManager.firefoxdriver().setup();;
 			driver=new FirefoxDriver();
 		}
-
-	}
-
-	public static WebDriver getDriver() {
 		return driver;
+
 	}
 
 	public static void quitDriver() {

@@ -23,24 +23,7 @@
 		</dependency>
 
 	</dependencies>
-	<profiles>
-		<profile>
-			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<env>dev</env>
-			</properties>
-		</profile>
-		<profile>
-			<id>qa</id>
-			<properties>
-				<env>qa</env>
-			</properties>
-		</profile>
-	</profiles>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -58,13 +41,33 @@
 				<version>3.5.2</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
+						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 					</suiteXmlFiles>
 					<systemPropertyVariables>
-						<propertyName>${env}</propertyName>
+						<env>${env}</env>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<env>dev</env>
+				<suiteXmlFile>dev-testng.xml</suiteXmlFile>
+			</properties>
+		</profile>
+		<profile>
+			<id>qa</id>
+			<properties>
+				<env>qa</env>
+				<suiteXmlFile>qa-testng.xml</suiteXmlFile>
+			</properties>
+		</profile>
+	</profiles>
+	
 </project>

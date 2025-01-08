@@ -7,13 +7,13 @@ import java.util.Properties;
 
 public class PropertyReader {
 
-	private Properties prop;
+	private static Properties prop;
 
 	public PropertyReader(String env) {
 		prop=new Properties();
 		try {
 			System.out.println("System Property: "+env);
-			prop.load(new FileInputStream("src/test/resources/"+env+".properties"));
+			prop.load(new FileInputStream(System.getProperty("user.dir")+"/src/test/resources/"+env+".properties"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -22,7 +22,7 @@ public class PropertyReader {
 	}
 
 
-	public String getProperty(String key) {
+	public static String getProperty(String key) {
 		return prop.getProperty(key);
 	}
 
